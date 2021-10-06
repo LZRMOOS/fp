@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style></style>
+	<meta charset="utf-8">
+	<title>fp</title>
+    <script src="https://cdn.jsdelivr.net/npm/clientjs@0.2.0/dist/client.base.min.js"></script>
+</head>
+<body>
+    <h1>browser fingerprint</h1>
+    <div>Resolution: <span id="res"></span></div>
+    <div>User Agent: <span id="ua"></span></div>
+    <div>OS: <span id="os"></span></div>
+
+    <div>Fingerprint: <span id="fp"></span></div>
+    <script>
+        const client = new ClientJS() // eslint-disable-line no-undef
+        let res = client.getAvailableResolution()
+        let ua = client.getUserAgent()
+        let os = client.getOS()
+
+        let fp = client.getFingerprint()
+
+        if (document.cookie.indexOf('fp') === -1 ) {
+            document.cookie = "fp="+ fp +"; max-age=86400; path=/";
+        } 
+        
+        document.getElementById("res").innerHTML = res
+        document.getElementById("ua").innerHTML = ua
+        document.getElementById("os").innerHTML = os
+
+        document.getElementById("fp").innerHTML = fp
+    </script>
+    <h2><a href="https://github.com/jackspirou/clientjs">Possible datapoints using clientjs:</a></h2>
+    <pre>
+        client.getBrowserData();
+        client.getFingerprint();
+        client.getCustomFingerprint(...);
+        
+        client.getUserAgent();
+        client.getUserAgentLowerCase();
+        
+        client.getBrowser();
+        client.getBrowserVersion();
+        client.getBrowserMajorVersion();
+        client.isIE();
+        client.isChrome();
+        client.isFirefox();
+        client.isSafari();
+        client.isOpera();
+        
+        client.getEngine();
+        client.getEngineVersion();
+        
+        client.getOS();
+        client.getOSVersion();
+        client.isWindows();
+        client.isMac();
+        client.isLinux();
+        client.isUbuntu();
+        client.isSolaris();
+        
+        client.getDevice();
+        client.getDeviceType();
+        client.getDeviceVendor();
+        
+        client.getCPU();
+        
+        client.isMobile();
+        client.isMobileMajor();
+        client.isMobileAndroid();
+        client.isMobileOpera();
+        client.isMobileWindows();
+        client.isMobileBlackBerry();
+        
+        client.isMobileIOS();
+        client.isIphone();
+        client.isIpad();
+        client.isIpod();
+        
+        client.getScreenPrint();
+        client.getColorDepth();
+        client.getCurrentResolution();
+        client.getAvailableResolution();
+        client.getDeviceXDPI();
+        client.getDeviceYDPI();
+        
+        client.getPlugins();
+        client.isJava();
+        client.getJavaVersion(); // functional only in java and full builds, throws an error otherwise
+        client.isFlash();
+        client.getFlashVersion(); // functional only in flash and full builds, throws an error otherwise
+        client.isSilverlight();
+        client.getSilverlightVersion();
+        
+        client.getMimeTypes();
+        client.isMimeTypes();
+        
+        client.isFont();
+        client.getFonts();
+        
+        client.isLocalStorage();
+        client.isSessionStorage();
+        client.isCookie();
+        
+        client.getTimeZone();
+        
+        client.getLanguage();
+        client.getSystemLanguage();
+        
+        client.isCanvas();
+        client.getCanvasPrint();
+    </pre>
+</body>
+</html>
